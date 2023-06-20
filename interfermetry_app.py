@@ -6,7 +6,7 @@ import os.path
 
 def streamlit_interf_app(root_path:str):
 
-    st.title("registration & Interference")
+    st.title("registration & interfermetry")
     if not os.path.exists(root_path):
         st.warning("{} is unexisted.".format(root_path))
         return
@@ -56,13 +56,13 @@ def streamlit_interf_app(root_path:str):
     st.write("the rmse about registration polymonial from master to slave is,")
     st.json(a["rmse"])
 
-    st.header("interference")
+    st.header("interfermetry")
 
-    st.write("include interference & coherence map and statistic chart")
+    st.write("include interfermetry & coherence map and statistic chart")
 
-    st.subheader("image of interference")
+    st.subheader("image of interfermetry")
 
-    st.write("there is a interference thumb map")
+    st.write("there is a interfermetry thumb map")
 
     st.subheader("image of coherence")
 
