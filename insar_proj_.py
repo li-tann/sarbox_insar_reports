@@ -1,35 +1,36 @@
 import streamlit as st
 import pandas as pd
+import datetime
 import json
+import os.path
+
+from interfermetry_app import streamlit_interf_app
+from lookuptable_app import streamlit_lut_app
 
 if "page" not in st.session_state:
     st.session_state.page = "Page Interf"
+
+root_path = st.sidebar.text_input("input a rootpath to create a insar report")
 
 options = st.sidebar.selectbox(
     'select window',
     ('Page Interf','Page LookupTab','Page Unwarp'),
     key="page")
 
+if not os.path.exists("D:/1_Data/ALOS2/sarbox/interferometry"):
+    print("is not exists")
+
+
 if st.session_state.page == "Page Interf":
-    st.header("Interference")
-    st.subheader("registration points")
-    df = pd.read_csv("D:/1_Data/ALOS2/sarbox/interferometry/registration_report_points.csv")
+    streamlit_interf_app(root_path+"/interferometry")
 
-    st.dataframe(df)  # Same as st.write(df)
-
-    st.subheader("registration polymonial json")
-    f = open('D:/1_Data/ALOS2/sarbox/interferometry/regist_polynomial.json', 'r')
-    content = f.read()
-    a = json.loads(content)
-    st.json(a["cofficient"])
-    st.json(a["rmse"])
-    st.subheader("registration report")
-    st.subheader("interference coherence value")
 
 elif st.session_state.page == "Page LookupTab":
-    st.header("LookupTab")
+   streamlit_lut_app(root_path + "/lookuptable")
 
 elif st.session_state.page == "Page Unwarp":
-    st.header("Unwarp")
+    st.title("Phase Unwarp")
 
-st.write("InSAR Project")
+st.divider()
+
+st.write("insar project report, @ litan, {}.".format(datetime.datetime.now().strftime('%Y-%m-%d')))
