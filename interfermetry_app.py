@@ -28,12 +28,29 @@ def streamlit_interf_app(root_path:str):
 
 # 公式太长, 可能要考虑换行
     st.write("the registration polymonial from master to slave is,")
-    azimuth_latex = "\delta_{{azi}}={0:.4f}+{1:.2e}*azi +{2:.2e}*sr+{3:.2e}*azi^2+{4:.2e}*sr^2+{5:.2e}*azi*sr".format(azi_cof[0], azi_cof[1], azi_cof[2], azi_cof[3], azi_cof[4], azi_cof[5])
-    # print(azimuth_latex)
+
+    azimuth_latex='''
+    \\begin{{aligned}}
+    \\delta_{{a}} =& {0:+.4f}   \\\\
+                     & {1:+.2e}*a \\\\
+                     & {2:+.2e}*r  \\\\
+                     & {3:+.2e}*a^2 \\\\
+                     & {4:+.2e}*r^2 \\\\
+                     & {5:+.2e}*a*r
+    \\end{{aligned}}
+    '''.format(azi_cof[0], azi_cof[1], azi_cof[2], azi_cof[3], azi_cof[4], azi_cof[5])
     st.latex(azimuth_latex)
 
-    slant_range_latex = "\delta_{{sr}}={0:.4f}+{1:.2e}*azi +{2:.2e}*sr+{3:.2e}*azi^2+{4:.2e}*sr^2+{5:.2e}*azi*sr".format(azi_cof[0], azi_cof[1], azi_cof[2], azi_cof[3], azi_cof[4], azi_cof[5])
-    # print(azimuth_latex)
+    slant_range_latex='''
+    \\begin{{aligned}}
+    \\delta_{{r}} =& {0:+.4f}   \\\\
+                     & {1:+.2e}*a \\\\
+                     & {2:+.2e}*r  \\\\
+                     & {3:+.2e}*a^2 \\\\
+                     & {4:+.2e}*r^2 \\\\
+                     & {5:+.2e}*a*r
+    \\end{{aligned}}
+    '''.format(sr_cof[0], sr_cof[1], sr_cof[2], sr_cof[3], sr_cof[4], sr_cof[5])
     st.latex(slant_range_latex)
 
     st.write("the rmse about registration polymonial from master to slave is,")
