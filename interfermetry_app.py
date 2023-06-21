@@ -16,17 +16,16 @@ def streamlit_interf_app(root_path:str):
     st.write("include registration points, polynomial formula & rmse")
 
     st.subheader("registration points")
-    df = pd.read_csv(root_path+"/registration_report_points.csv")
+    df = pd.read_csv(root_path+"/regist_points.csv")
     st.dataframe(df)  # Same as st.write(df)
 
     st.subheader("registration polymonial json")
-    f = open(root_path+'/regist_polynomial.json', 'r')
+    f = open(root_path+'/regist_polynomial_m2s.json', 'r')
     content = f.read()
     a = json.loads(content)
     azi_cof = a["cofficient"]["azimuth"]
     sr_cof = a["cofficient"]["slant_range"]
 
-# 公式太长, 可能要考虑换行
     st.write("the registration polymonial from master to slave is,")
 
     azimuth_latex='''
